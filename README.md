@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NeuroAthlete - Trening umiejętności poznawczych dla sportowców
 
-## Getting Started
+Aplikacja SaaS do rozwijania refleksu i koncentracji użytkowników, specjalnie skierowana do sportowców sportów walki (taekwondo, MMA).
 
-First, run the development server:
+## 🚀 Szybki start
 
 ```bash
+# Instalacja zależności
+npm install
+
+# Uruchomienie w trybie deweloperskim
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build produkcyjny
+npm run build
+
+# Uruchomienie serwera produkcyjnego
+npm run start
+
+# Testy
+npm run test
+npm run test:watch
+npm run test:coverage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Struktura projektu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+neuro-athlete/
+├── app/                    # Strony Next.js App Router
+│   ├── page.tsx           # Strona główna
+│   ├── reaction-test/     # Test refleksu
+│   ├── focus-training/    # Trening koncentracji
+│   └── statistics/        # Statystyki użytkownika
+├── implementation/        # Logika biznesowa
+│   ├── plan_funkcji.ts    # Typy i funkcje
+│   ├── plan_komponentow.tsx # Szablony komponentów
+│   └── ...               # Plany stron i stylów
+├── workflows/             # Dokumentacja procesowa
+└── docs/                  # Analiza projektowa
+```
 
-## Learn More
+## 🧪 Testy
 
-To learn more about Next.js, take a look at the following resources:
+Projekt używa **Jest** + **React Testing Library**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Konfiguracja
+```
+# Uruchom wszystkie testy
+npm run test
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Testy z watch mode
+npm run test:watch
 
-## Deploy on Vercel
+# Pokrycie kodu
+npm run test:coverage
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Przykładowe testy
+```typescript
+// tests/formatTime.test.ts
+import { formatTime } from '../implementation/plan_funkcji';
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+describe('formatTime', () => {
+  it('should format milliseconds correctly', () => {
+    expect(formatTime(250)).toBe('250 ms');
+  });
+
+  it('should format seconds for long times', () => {
+    expect(formatTime(1500)).toBe('1.50 s');
+  });
+});
+```
+
+## 🛠️ Technologie
+
+- **Next.js 16** - Framework React
+- **React 19** - Biblioteka UI
+- **TypeScript** - Typowanie statyczne
+- **Tailwind CSS 4** - Styling
+- **Jest** - Testy jednostkowe
+- **localStorage** - Przechowywanie danych (bez backendu w MVP)
+
+## 📱 Responsywność
+
+Aplikacja działa na:
+- Desktop (1024px+)
+- Tablet (768px+)
+- Mobile (320px+)
+
+## 🎯 Funkcjonalności
+
+### Test refleksu (/reaction-test)
+- Losowy czas oczekiwania 1-5 sekund
+- Pomiar czasu reakcji w ms
+- Ocena wyniku (Wybitny/Dobry/Średni/Do poprawy)
+- Zapis wyników do localStorage
+
+### Trening koncentracji (/focus-training)
+- Sterowanie klawiszami ⬆⬇ lub W/S
+- 10 rund treningu
+- Wykrywanie błędów
+- Obliczanie wyniku punktowego
+- Zapis wyników do localStorage
+
+### Statystyki (/statistics)
+- Średni czas reakcji
+- Najlepszy wynik
+- Wykresy postępów
+- Historia treningów
+
+## 🚀 Deployment
+
+### Vercel (rekomendowane)
+```bash
+npm run build
+# Import projektu w Vercelze lub użyj Vercel CLI
+```
+
+### Inne platformy
+- Dowolny hosting Node.js
+- Wymagane zmienne środowiskowe: brak (MVP)
+
+## 👤 Autor
+Oskar Wyszkowski - Kognitywistyka  
+Projekt: Tworzenie aplikacji internetowych  
+Data: 2026
